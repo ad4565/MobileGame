@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject pausemenuUI;
+    public GameObject upgradeMenuUI;
 
     // Update is called once per frame
     void Update()
@@ -15,6 +17,7 @@ public class PauseMenu : MonoBehaviour
 
 
     public void Pause() {
+        upgradeMenuUI.SetActive(false);
         pausemenuUI.SetActive(true);
         Time.timeScale=0f;
         PublicVars.GamePaused = true;
@@ -28,4 +31,11 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame(){
         Application.Quit();
     }
+
+    public void upgradeMenu() {
+        pausemenuUI.SetActive(false);
+        upgradeMenuUI.SetActive(true);
+    }
+
+    
 }

@@ -10,7 +10,7 @@ public class enemycode : MonoBehaviour
     Vector3 offset;
     public float amount;
     float distance;
-    bool follow=false;
+    bool follow=true;
     void Start()
     {
        _navAgent=GetComponent<NavMeshAgent>(); 
@@ -27,20 +27,27 @@ public class enemycode : MonoBehaviour
 
     }
     private void Update(){
-        player=GameObject.FindGameObjectWithTag("Player");
-        var distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance <=amount) {
-            follow = true;
-            StartCoroutine(FindPlayer());
-        }
-        else {
-            follow = false;
-            StartCoroutine(FindPlayer());
-        }
+        // player=GameObject.FindGameObjectWithTag("Player");
+        // var distance = Vector3.Distance(player.transform.position, transform.position);
+        // if (distance <=amount) {
+        //     follow = true;
+        //     StartCoroutine(FindPlayer());
+        // }
+        // else {
+        //     follow = false;
+        //     StartCoroutine(FindPlayer());
+        // }
     }
 
     
-    private void OnCollisionEnter(Collision other){
+    // private void OnCollisionEnter(Collision other){
+    //     if(other.gameObject.CompareTag("Bullet")){
+    //         Destroy(other.gameObject);
+    //         Destroy(gameObject);
+    //     }
+    // }
+
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Bullet")){
             Destroy(other.gameObject);
             Destroy(gameObject);
